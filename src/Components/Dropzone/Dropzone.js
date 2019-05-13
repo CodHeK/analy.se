@@ -48,7 +48,6 @@ class Dropzone extends Component {
         const files = evt.target.files;
         if (this.props.onFilesAdded) {
             const array = this.fileListToArray(files);
-            this.props.onFilesAdded(array);
             this.setState({ capturedFiles: array });
         }
     }
@@ -71,7 +70,7 @@ class Dropzone extends Component {
         
         const items = event.dataTransfer.items;
         $(".Dropzone, .alert").fadeOut(500);
-        $(".loader").fadeIn(500);
+        $(".loader").fadeIn(1000);
         if (this.props.onFilesAdded) {
             for (let i=0; i<items.length; i++) {
                 let item = items[i].webkitGetAsEntry();
@@ -82,16 +81,34 @@ class Dropzone extends Component {
             }
             let array2 = [];
             setTimeout(() => {
-                array1.forEach(it => {
-                    if(it.isFile === true) array2.push(it);
+                let fileExtsMap = new Map();
+                array1.forEach(each => {
+                    if(each.isFile === true) {
+                        const path = each.webkitRelativePath || each.fullPath;
+                        const sp = path.split(".");
+                        const ext = sp[sp.length - 1];
+                        if(ext === 'js' || ext === 'py' || ext === 'java' || ext === 'cpp' || ext === 'c' || ext === 'json') {
+                            if (fileExtsMap.has(ext)) {
+                                let ct = fileExtsMap.get(ext);
+                                ct += 1;
+                                fileExtsMap.set(ext, ct);
+                            } else {
+                                fileExtsMap.set(ext, 1);
+                            }
+                            array2.push(each);
+                        }
+                        else {
+                            if(fileExtsMap.has(ext)) fileExtsMap.delete(ext);
+                        }
+                    }
                 });
-            }, 3000);
+                console.log(fileExtsMap);
+            }, 3500);
             setTimeout(() => {
-                console.log(array2);
                 this.setState({ capturedFiles: array2 });
             }, 3500);
             
-            this.props.onFilesAdded(array2);
+            //this.props.onFilesAdded(array2);
         }
         this.setState({ hightlight: false });
     }
@@ -99,8 +116,8 @@ class Dropzone extends Component {
     render() {
         let files = "";
         if(this.state.capturedFiles !== undefined) {
-             files = this.state.capturedFiles.map((each) => {
-                console.log(each.webkitRelativePath || each.fullPath);
+             console.log(this.state.capturedFiles);
+             files = this.state.capturedFiles.map((each, key) => {
                 return <h5>{each.webkitRelativePath || each.fullPath}</h5>
             })
         }

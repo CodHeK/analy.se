@@ -3,7 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="f3ffca14-4b2a-4603-beba-6da907631cd6" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/src/Components/Dropzone/Dropzone.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/Dropzone/Dropzone.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Components/Dropzone/Dropzone.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/Dropzone/Dropzone.scss" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -37,8 +36,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/Components/Dropzone/Dropzone.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="571">
-              <caret line="106" column="31" selection-start-line="106" selection-start-column="31" selection-end-line="106" selection-end-column="31" />
+            <state relative-caret-position="432">
+              <caret line="97" column="46" selection-start-line="97" selection-start-column="46" selection-end-line="97" selection-end-column="46" />
               <folding>
                 <element signature="e#0#40#0" expanded="true" />
               </folding>
@@ -174,12 +173,12 @@
       <updated>1557745852948</updated>
       <workItem from="1557745858641" duration="93000" />
       <workItem from="1557747067744" duration="95000" />
-      <workItem from="1557747273549" duration="18172000" />
+      <workItem from="1557747273549" duration="19467000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="18360000" />
+    <option name="totallyTimeSpent" value="19655000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1440" height="900" extended-state="0" />
@@ -284,8 +283,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Components/Dropzone/Dropzone.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="571">
-          <caret line="106" column="31" selection-start-line="106" selection-start-column="31" selection-end-line="106" selection-end-column="31" />
+        <state relative-caret-position="432">
+          <caret line="97" column="46" selection-start-line="97" selection-start-column="46" selection-end-line="97" selection-end-column="46" />
           <folding>
             <element signature="e#0#40#0" expanded="true" />
           </folding>
