@@ -25,6 +25,14 @@
     }
 }
 
+.loader {
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-weight: bold;
+    margin-top: 19vw;
+    display: none;
+}
+
 .Highlight {
     animation: grow-shrink 4s infinite;
 }

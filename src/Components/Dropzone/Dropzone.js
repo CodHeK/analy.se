@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import $ from 'jquery';
 import './Dropzone.scss'
 let array1 = [];
 
@@ -69,6 +70,8 @@ class Dropzone extends Component {
         if (this.props.disabled) return;
         
         const items = event.dataTransfer.items;
+        $(".Dropzone, .alert").fadeOut(500);
+        $(".loader").fadeIn(500);
         if (this.props.onFilesAdded) {
             for (let i=0; i<items.length; i++) {
                 let item = items[i].webkitGetAsEntry();
@@ -94,6 +97,14 @@ class Dropzone extends Component {
     }
     
     render() {
+        let files = "";
+        if(this.state.capturedFiles !== undefined) {
+             files = this.state.capturedFiles.map((each) => {
+                console.log(each.webkitRelativePath || each.fullPath);
+                return <h5>{each.webkitRelativePath || each.fullPath}</h5>
+            })
+        }
+        $(".loader").fadeOut(3500);
         const content = !this.state.hightlight ? "+" : "🙌";
         const alert = this.state.hightlight ?
                     <div className="alert">⚠️ &nbsp; Dropping in the wrong h<span className="special">o</span>le fella 😛</div> :
@@ -117,6 +128,8 @@ class Dropzone extends Component {
                         onChange={this.onFilesAdded}
                     />
                 </div>
+                {files}
+                <div className="loader">Crunching your project files 🤓</div>
                 {alert}
             </div>
         );
