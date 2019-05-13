@@ -1,6 +1,8 @@
+@import '../../App';
+
 $colors: (
     main-title: #000,
-    special: #BADA55
+    special: $special
 );
 
 .Dashboard {
@@ -27,8 +29,5 @@ $colors: (
                 opacity: 0.7;
             }
         }
-    }
-    .main-content {
-        margin-top: 3em;
     }
 }

@@ -10,11 +10,11 @@ class Dashboard extends Component {
                     <h1 className="title">ana<span className="dot">.</span>ly</h1>
                     {/*<div className="dash"></div>*/}
                 </div>
-                <main className="main-content">
+                <section className="main-content">
                     <div className="outer-card">
                         <Dropzone onFilesAdded={console.log} />
                     </div>
-                </main>
+                </section>
             </div>
         );
     }

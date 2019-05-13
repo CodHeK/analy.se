@@ -5,6 +5,7 @@
   "dependencies": {
     "axios": "^0.18.0",
     "d3": "^5.9.2",
+    "datatransfer-files-promise": "^1.2.0",
     "jquery": "^3.4.0",
     "node-sass": "^4.12.0",
     "react": "^16.8.6",
