@@ -1,0 +1,32 @@
+.Dropzone {
+    height: 18vw;
+    width: 18vw;
+    background-color: #fff;
+    border: 2px dashed rgb(187, 186, 186);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    margin: 0 auto;
+    margin-top: 10vw;
+    transition: all .1s ease-out;
+    span {
+        font-size: 8vw;
+        justify-content: center;
+        position: absolute;
+        margin-top: 0.5vw;
+        color: #BADA55;
+        opacity: 0.7;
+    }
+    .FileInput {
+        display: none;
+    }
+}
+
+.Highlight {
+    transform: scale(1.3);
+    span {
+        content: "WRONG HOLE FELLA !";
+    }
+}
