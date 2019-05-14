@@ -1,7 +1,11 @@
 import React, { Component } from 'react'
 import $ from 'jquery';
+import Summary from '../Summary/Summary';
 import './Dropzone.scss'
+import bars from '../../assets/svg-loaders/bars.svg';
 let array1 = [];
+let allExts = ['js', 'coffee', 'ts', 'jsx', 'py', 'sql', 'db', 'cpp', 'c', 'go', 'scss', 'sass', 'css', 'html',
+                'json'];
 
 function scanFiles(item) {
     array1.push(item);
@@ -20,7 +24,10 @@ class Dropzone extends Component {
         super(props);
         this.state = {
             hightlight: false,
-            capturedFiles: []
+            capturedFiles: [],
+            extMap: null,
+            root: "<your awesome project name>",
+            totalFiles: "counting files ... "
         };
         this.fileInputRef = React.createRef();
         this.openFileDialog = this.openFileDialog.bind(this);
@@ -69,7 +76,7 @@ class Dropzone extends Component {
         if (this.props.disabled) return;
         
         const items = event.dataTransfer.items;
-        $(".Dropzone, .alert").fadeOut(500);
+        $(".Dropzone, .alert, .outer-title-box").fadeOut(500);
         $(".loader").fadeIn(1000);
         if (this.props.onFilesAdded) {
             for (let i=0; i<items.length; i++) {
@@ -82,12 +89,18 @@ class Dropzone extends Component {
             let array2 = [];
             setTimeout(() => {
                 let fileExtsMap = new Map();
+                this.setState({ root: array1[0].name, totalFiles: array1.length });
+                setTimeout(() => {
+                    this.setState({ totalFiles: "re-calculating file count ..." });
+                }, 2000);
                 array1.forEach(each => {
                     if(each.isFile === true) {
                         const path = each.webkitRelativePath || each.fullPath;
                         const sp = path.split(".");
+                        const nonDir = path.split("/");
                         const ext = sp[sp.length - 1];
-                        if(ext === 'js' || ext === 'py' || ext === 'java' || ext === 'cpp' || ext === 'c' || ext === 'json') {
+                        if((nonDir.indexOf("node_modules") === -1)  && (allExts.indexOf(ext) !== -1)) {
+                            //console.log((nonDir.indexOf("node_modules") === -1), (allExts.indexOf(ext) !== -1), path);
                             if (fileExtsMap.has(ext)) {
                                 let ct = fileExtsMap.get(ext);
                                 ct += 1;
@@ -97,16 +110,19 @@ class Dropzone extends Component {
                             }
                             array2.push(each);
                         }
-                        else {
-                            if(fileExtsMap.has(ext)) fileExtsMap.delete(ext);
-                        }
                     }
                 });
+                setTimeout(() => {
+                    this.setState({ totalFiles: "removing non-code file types 🤔" });
+                }, 3000);
                 console.log(fileExtsMap);
-            }, 3500);
+                setTimeout(() => {
+                    this.setState({ extMap: fileExtsMap, totalFiles: array2.length });
+                }, 4000);
+            }, 4500);
             setTimeout(() => {
                 this.setState({ capturedFiles: array2 });
-            }, 3500);
+            }, 4500);
             
             //this.props.onFilesAdded(array2);
         }
@@ -116,12 +132,13 @@ class Dropzone extends Component {
     render() {
         let files = "";
         if(this.state.capturedFiles !== undefined) {
-             console.log(this.state.capturedFiles);
+             console.log(this.state.extMap);
              files = this.state.capturedFiles.map((each, key) => {
-                return <h5>{each.webkitRelativePath || each.fullPath}</h5>
+                return <Summary key={key} file={each} />;
             })
         }
-        $(".loader").fadeOut(3500);
+        $(".summary-content").fadeIn(5500);
+        $(".loader").fadeOut(4500);
         const content = !this.state.hightlight ? "+" : "🙌";
         const alert = this.state.hightlight ?
                     <div className="alert">⚠️ &nbsp; Dropping in the wrong h<span className="special">o</span>le fella 😛</div> :
@@ -145,8 +162,14 @@ class Dropzone extends Component {
                         onChange={this.onFilesAdded}
                     />
                 </div>
-                {files}
-                <div className="loader">Crunching your project files 🤓</div>
+                <div className="summary-content">
+                    <h1 className="root-title">{this.state.root} (<span className="total-files">{this.state.totalFiles}</span>)</h1>
+                    {files}
+                </div>
+                <div className="loader">
+                    <img src={bars} width="50" height="50" /> <br />  <br />
+                    Crunching within your project files 🤓
+                </div>
                 {alert}
             </div>
         );

@@ -25,6 +25,21 @@
     }
 }
 
+.summary-content {
+    display: none;
+    .root-title {
+        font-size: 2.5vw;
+        text-align: left;
+        letter-spacing: 3px;
+        margin: 3vw;
+        font-weight: 300;
+    }
+    .total-files {
+        font-size: 2vw;
+        color: $special;
+    }
+}
+
 .loader {
     text-transform: uppercase;
     letter-spacing: 2px;
