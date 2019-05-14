@@ -14,12 +14,25 @@ $lightBg: rgba(205, 205, 205, 0.2);
         text-transform: uppercase;
         font-size: 1vw;
     }
+    .percent {
+        font-weight: 300;
+        text-transform: uppercase;
+        font-size: 0.8vw;
+        padding-left: 1vw;
+    }
+    .file-percent {
+        font-weight: 700;
+    }
     .each-total-files {
         font-size: 1vw;
         color: $special;
     }
-    .row.sum {
+    .row.top {
         height: 50px;
+    }
+    .row.middle {
+        height: 45px;
+        background-color: rgba(205, 205, 205, 0.4);
     }
 }
 

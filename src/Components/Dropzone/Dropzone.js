@@ -6,7 +6,7 @@ import { Pie } from 'react-chartjs-2';
 import bars from '../../assets/svg-loaders/bars.svg';
 let array1 = [];
 let allExts = ['js', 'coffee', 'ts', 'jsx', 'py', 'sql', 'db', 'cpp', 'c', 'go', 'scss', 'sass', 'css', 'html',
-                'json', 'java', 'bash', 'sh'];
+             'java', 'bash', 'sh', 'less'];
 
 function scanFiles(item) {
     array1.push(item);
@@ -20,6 +20,24 @@ function scanFiles(item) {
     }
 }
 
+async function getFile(fileEntry) {
+    try {
+        return await new Promise((resolve, reject) => fileEntry.file(resolve, reject));
+    } catch (err) {
+        console.log(err);
+    }
+}
+
+function lineCount( text ) {
+    var nLines = 0;
+    for( var i = 0;  i < text.length;  ++i ) {
+        if( text[i] === '\n' ) {
+            ++nLines;
+        }
+    }
+    return nLines;
+}
+
 class Dropzone extends Component {
     constructor(props) {
         super(props);
@@ -29,35 +47,12 @@ class Dropzone extends Component {
             extMap: null,
             root: "<your awesome project name>",
             totalFiles: "counting files ... ",
+            locMap: null
         };
         this.fileInputRef = React.createRef();
-        this.openFileDialog = this.openFileDialog.bind(this);
-        this.onFilesAdded = this.onFilesAdded.bind(this);
         this.onDragOver = this.onDragOver.bind(this);
         this.onDragLeave = this.onDragLeave.bind(this);
         this.onDrop = this.onDrop.bind(this);
-    }
-    
-    openFileDialog() {
-        if (this.props.disabled) return;
-        this.fileInputRef.current.click();
-    }
-    
-    fileListToArray(list) {
-        const array = [];
-        for (var i = 0; i < list.length; i++) {
-            array.push(list.item(i));
-        }
-        return array;
-    }
-    
-    onFilesAdded(evt) {
-        if (this.props.disabled) return;
-        const files = evt.target.files;
-        if (this.props.onFilesAdded) {
-            const array = this.fileListToArray(files);
-            this.setState({ capturedFiles: array });
-        }
     }
     
     onDragOver(evt) {
@@ -94,60 +89,73 @@ class Dropzone extends Component {
                 setTimeout(() => {
                     this.setState({ totalFiles: "re-calculating file count ..." });
                 }, 2000);
-                array1.forEach(each => {
+                array1.forEach(async (each) => {
                     if(each.isFile === true) {
                         const path = each.webkitRelativePath || each.fullPath;
                         const sp = path.split(".");
                         const nonDir = path.split("/");
                         const ext = sp[sp.length - 1];
-                        if((nonDir.indexOf("node_modules") === -1)  && (allExts.indexOf(ext) !== -1)) {
-                            //console.log((nonDir.indexOf("node_modules") === -1), (allExts.indexOf(ext) !== -1), path);
-                            if (fileExtsMap.has(ext)) {
-                                let ct = fileExtsMap.get(ext);
-                                ct += 1;
-                                fileExtsMap.set(ext, ct);
-                            } else {
-                                fileExtsMap.set(ext, 1);
+                        if((nonDir.indexOf("node_modules") === -1) &&
+                            (nonDir.indexOf("env") === -1)  &&
+                            (nonDir.indexOf("venv") === -1) &&
+                            (allExts.indexOf(ext) !== -1)) {
+                            let rd = new FileReader();
+                            rd.onload = function (e) {
+                                let res = e.target.result;
+                                let lines = lineCount(res);
+        
+                                if (fileExtsMap.has(ext)) {
+                                    let ct = fileExtsMap.get(ext);
+                                    ct.fileCount += 1;
+                                    ct.loc += lines;
+                                    fileExtsMap.set(ext, ct);
+                                } else {
+                                    fileExtsMap.set(ext, {'fileCount': 1, 'loc': lines});
+                                }
+                                
+                                array2.push(each);
                             }
-                            array2.push(each);
+                            rd.readAsText(await getFile(each));
                         }
                     }
                 });
                 setTimeout(() => {
                     this.setState({ totalFiles: "removing non-code file types 🤔" });
                 }, 3000);
-                console.log(fileExtsMap);
                 setTimeout(() => {
                     this.setState({ extMap: fileExtsMap, totalFiles: array2.length });
                 }, 4000);
                 $(".row").fadeIn(4500);
             }, 4500);
             setTimeout(() => {
-                this.setState({ capturedFiles: array2 });
-            }, 4500);
-            
-            //this.props.onFilesAdded(array2);
+                this.setState({capturedFiles: array2 });
+            }, 5500);
         }
         this.setState({ hightlight: false });
     }
     
+    goToHome() {
+        window.location.reload();
+    }
+    
     render() {
         let summary = "", chartData = null, PieChart;
+        
         if(this.state.capturedFiles !== undefined && this.state.extMap !== null) {
-             console.log(this.state.extMap);
-             let mapData = [], labels = [], data = [], backgroundColor = [];
-             this.state.extMap.forEach((value, key, map) => {
-                 console.log(key, value);
-                 let fileObj = {
-                     'extension': key,
-                     'loc': 1000,
-                     'fileCount': value,
-                     'color': `rgba(${Math.floor(Math.random() * 255)}, ${Math.floor(Math.random() * 255)}, ${Math.floor(Math.random() * 255)}, 0.5)`
-                 };
-                 labels.push(key); data.push(value); backgroundColor.push(fileObj.color);
-                 mapData.push(fileObj);
-             });
-             chartData = {
+            let mapData = [], labels = [], data = [], backgroundColor = [];
+            console.log(this.state.extMap)
+            this.state.extMap.forEach((value, key, map) => {
+                let fileObj = {
+                    'extension': key,
+                    'loc': value.loc,
+                    'fileCount': value.fileCount,
+                    'color': `rgba(${Math.floor(Math.random() * 255)}, ${Math.floor(Math.random() * 255)}, ${Math.floor(Math.random() * 255)}, 0.5)`
+                };
+                console.log(fileObj)
+                labels.push(key); data.push(value.fileCount); backgroundColor.push(fileObj.color);
+                mapData.push(fileObj);
+            });
+            chartData = {
                 labels,
                 datasets: [
                     {
@@ -155,17 +163,17 @@ class Dropzone extends Component {
                         backgroundColor,
                     }
                 ]
-             }
-             console.log(chartData);
-             mapData.sort((a, b) => b.fileCount - a.fileCount);
-             summary = mapData.map((each, key) => {
-                 return <Summary key={key} extension={each.extension} loc={each.loc} fileCount={each.fileCount} color={each.color} />
-             })
+            }
+            mapData.sort((a, b) => b.fileCount - a.fileCount);
+            summary =  mapData.map((each, key) => {
+                return <Summary key={key} extension={each.extension} loc={each.loc} fileCount={each.fileCount} color={each.color} total={this.state.totalFiles} />
+            })
         }
         $(".summary-content").fadeIn(5500);
-        $(".loader").fadeOut(4500);
+        $(".loader").fadeOut(8500);
         if(chartData !== null)
             PieChart = <div className="chart"><Pie data={chartData} options={{ responsive: true }} width={270} height={270} /></div>
+   
         const content = !this.state.hightlight ? "+" : "🙌";
         const alert = this.state.hightlight ?
                     <div className="alert">⚠️ &nbsp; Dropping in the wrong h<span className="special">o</span>le fella 😛</div> :
@@ -173,7 +181,6 @@ class Dropzone extends Component {
         return (
             <div className="Dropzone-main">
                 <div className={`Dropzone ${this.state.hightlight ? "Highlight" : ""}`}
-                     onClick={this.openFileDialog}
                      onDragOver={this.onDragOver}
                      onDragLeave={this.onDragLeave}
                      onDrop={this.onDrop}
@@ -190,7 +197,14 @@ class Dropzone extends Component {
                     />
                 </div>
                 <div className="summary-content container">
-                    <h1 className="root-title">{this.state.root} (<span className="total-files">{this.state.totalFiles}</span>)</h1>
+                    <div className="row">
+                        <div className="col-md-10 l">
+                            <h1 className="root-title">{this.state.root} (<span className="total-files">{this.state.totalFiles}</span>)</h1>
+                        </div>
+                        <div className="col-md-2 r">
+                            <i className="fas fa-arrow-right" onClick={() => this.goToHome()}></i>
+                        </div>
+                    </div>
                     <br />
                     <h3 className="sub-heading">Languages</h3>
                     <div className="row cont">
