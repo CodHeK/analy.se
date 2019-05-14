@@ -15,7 +15,7 @@ class Summary extends Component {
                         <strong><h1 className="lang">{fileData.extension} (&nbsp;<span className="each-total-files">{fileData.fileCount}</span>&nbsp;)</h1></strong>
                     </div>
                     <div className="col-md-3">
-                        <div style={{ backgroundColor: `${fileData.color}`, width: '20px', height: '20px', textAlign: 'right', marginTop: '1.1vw', borderRadius: '50%' }}></div>
+                        <div style={{ backgroundColor: `${fileData.color}`, width: '16px', height: '16px', textAlign: 'right', marginTop: '1.1vw', borderRadius: '50%' }}></div>
                     </div>
                 </div>
             </div>

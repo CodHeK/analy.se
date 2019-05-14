@@ -54,12 +54,19 @@ $lightBg: white;
             background-color: $lightBg;
             height: 35vw;
             margin: 0.3vw;
+            z-index: -1;
         }
         .right {
             background-color: rgba(205, 205, 205, 0.2);
             height: 35vw;
             margin: 0.3vw;
+            z-index: -1;
         }
+    }
+    .sub-heading {
+        font-size: 1.5vw;
+        padding-left: 4vw;
+        text-align: left;
     }
 }
 
@@ -73,6 +80,7 @@ $lightBg: white;
 
 .chart {
     margin-top: 1em;
+    z-index: 10;
 }
 
 .Highlight {

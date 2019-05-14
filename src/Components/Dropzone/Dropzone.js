@@ -191,12 +191,13 @@ class Dropzone extends Component {
                 </div>
                 <div className="summary-content container">
                     <h1 className="root-title">{this.state.root} (<span className="total-files">{this.state.totalFiles}</span>)</h1>
-                    {/*<hr className="line" />*/}
+                    <br />
+                    <h3 className="sub-heading">Languages</h3>
                     <div className="row cont">
-                        <div className="col-md-6 col-xs-12 ">
+                        <div className="col-md-6 col-xs-12">
                             {summary}
                         </div>
-                        <div className="col-md-5 col-xs-12 ">
+                        <div className="col-md-5 col-xs-12">
                             {PieChart}
                         </div>
                     </div>
