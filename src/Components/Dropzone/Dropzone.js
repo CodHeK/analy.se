@@ -1,11 +1,12 @@
 import React, { Component } from 'react'
 import $ from 'jquery';
 import Summary from '../Summary/Summary';
-import './Dropzone.scss'
+import './Dropzone.scss';
+import { Pie } from 'react-chartjs-2';
 import bars from '../../assets/svg-loaders/bars.svg';
 let array1 = [];
 let allExts = ['js', 'coffee', 'ts', 'jsx', 'py', 'sql', 'db', 'cpp', 'c', 'go', 'scss', 'sass', 'css', 'html',
-                'json'];
+                'json', 'java', 'bash', 'sh'];
 
 function scanFiles(item) {
     array1.push(item);
@@ -27,7 +28,7 @@ class Dropzone extends Component {
             capturedFiles: [],
             extMap: null,
             root: "<your awesome project name>",
-            totalFiles: "counting files ... "
+            totalFiles: "counting files ... ",
         };
         this.fileInputRef = React.createRef();
         this.openFileDialog = this.openFileDialog.bind(this);
@@ -119,6 +120,7 @@ class Dropzone extends Component {
                 setTimeout(() => {
                     this.setState({ extMap: fileExtsMap, totalFiles: array2.length });
                 }, 4000);
+                $(".row").fadeIn(4500);
             }, 4500);
             setTimeout(() => {
                 this.setState({ capturedFiles: array2 });
@@ -130,15 +132,40 @@ class Dropzone extends Component {
     }
     
     render() {
-        let files = "";
-        if(this.state.capturedFiles !== undefined) {
+        let summary = "", chartData = null, PieChart;
+        if(this.state.capturedFiles !== undefined && this.state.extMap !== null) {
              console.log(this.state.extMap);
-             files = this.state.capturedFiles.map((each, key) => {
-                return <Summary key={key} file={each} />;
-            })
+             let mapData = [], labels = [], data = [], backgroundColor = [];
+             this.state.extMap.forEach((value, key, map) => {
+                 console.log(key, value);
+                 let fileObj = {
+                     'extension': key,
+                     'loc': 1000,
+                     'fileCount': value,
+                     'color': `rgba(${Math.floor(Math.random() * 255)}, ${Math.floor(Math.random() * 255)}, ${Math.floor(Math.random() * 255)}, 0.5)`
+                 };
+                 labels.push(key); data.push(value); backgroundColor.push(fileObj.color);
+                 mapData.push(fileObj);
+             });
+             chartData = {
+                labels,
+                datasets: [
+                    {
+                        data,
+                        backgroundColor,
+                    }
+                ]
+             }
+             console.log(chartData);
+             mapData.sort((a, b) => b.fileCount - a.fileCount);
+             summary = mapData.map((each, key) => {
+                 return <Summary key={key} extension={each.extension} loc={each.loc} fileCount={each.fileCount} color={each.color} />
+             })
         }
         $(".summary-content").fadeIn(5500);
         $(".loader").fadeOut(4500);
+        if(chartData !== null)
+            PieChart = <div className="chart"><Pie data={chartData} options={{ responsive: true }} width={270} height={270} /></div>
         const content = !this.state.hightlight ? "+" : "🙌";
         const alert = this.state.hightlight ?
                     <div className="alert">⚠️ &nbsp; Dropping in the wrong h<span className="special">o</span>le fella 😛</div> :
@@ -162,9 +189,17 @@ class Dropzone extends Component {
                         onChange={this.onFilesAdded}
                     />
                 </div>
-                <div className="summary-content">
+                <div className="summary-content container">
                     <h1 className="root-title">{this.state.root} (<span className="total-files">{this.state.totalFiles}</span>)</h1>
-                    {files}
+                    {/*<hr className="line" />*/}
+                    <div className="row cont">
+                        <div className="col-md-6 col-xs-12 ">
+                            {summary}
+                        </div>
+                        <div className="col-md-5 col-xs-12 ">
+                            {PieChart}
+                        </div>
+                    </div>
                 </div>
                 <div className="loader">
                     <img src={bars} width="50" height="50" /> <br />  <br />

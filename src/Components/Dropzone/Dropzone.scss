@@ -1,5 +1,7 @@
 @import '../../App';
 
+$lightBg: white;
+
 .Dropzone {
     height: 18vw;
     width: 18vw;
@@ -33,10 +35,31 @@
         letter-spacing: 3px;
         margin: 3vw;
         font-weight: 300;
+        padding-left: 1vw;
     }
     .total-files {
         font-size: 2vw;
         color: $special;
+    }
+    .row.cont {
+        display: none;
+        margin: 2.5vw;
+        .line {
+            left: 1.5vw;
+            text-align: right;
+            width: 75%;
+            position: relative;
+        }
+        .left {
+            background-color: $lightBg;
+            height: 35vw;
+            margin: 0.3vw;
+        }
+        .right {
+            background-color: rgba(205, 205, 205, 0.2);
+            height: 35vw;
+            margin: 0.3vw;
+        }
     }
 }
 
@@ -46,6 +69,10 @@
     font-weight: bold;
     margin-top: 19vw;
     display: none;
+}
+
+.chart {
+    margin-top: 1em;
 }
 
 .Highlight {

@@ -3,8 +3,12 @@
   <component name="ChangeListManager">
     <list default="true" id="f3ffca14-4b2a-4603-beba-6da907631cd6" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Components/Dropzone/Dropzone.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/Dropzone/Dropzone.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Components/Dropzone/Dropzone.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/Dropzone/Dropzone.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Components/Summary/Summary.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/Summary/Summary.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Components/Summary/Summary.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/Summary/Summary.scss" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -20,8 +24,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/Components/Dropzone/Dropzone.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="184">
-              <caret line="115" column="66" selection-start-line="115" selection-start-column="66" selection-end-line="115" selection-end-column="66" />
+            <state relative-caret-position="144">
+              <caret line="88" column="13" selection-start-line="88" selection-start-column="13" selection-end-line="88" selection-end-column="13" />
               <folding>
                 <element signature="e#0#40#0" expanded="true" />
               </folding>
@@ -32,15 +36,31 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Components/Dropzone/Dropzone.scss">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="364">
-              <caret line="37" column="20" selection-start-line="37" selection-start-column="20" selection-end-line="37" selection-end-column="20" />
+            <state relative-caret-position="155">
+              <caret line="43" column="13" selection-start-line="43" selection-start-column="13" selection-end-line="43" selection-end-column="13" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Components/Summary/Summary.scss">
-          <provider selected="true" editor-type-id="text-editor" />
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="513">
+              <caret line="19" column="21" selection-start-line="19" selection-start-column="21" selection-end-line="19" selection-end-column="21" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Components/Summary/Summary.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="459">
+              <caret line="17" column="142" selection-start-line="17" selection-start-column="142" selection-end-line="17" selection-end-column="142" />
+              <folding>
+                <element signature="e#0#41#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
         </entry>
       </file>
     </leaf>
@@ -56,6 +76,7 @@
     <findStrings>
       <find>fileInputRef</find>
       <find>map</find>
+      <find>total</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -71,8 +92,9 @@
         <option value="$PROJECT_DIR$/src/Components/Dashboard/Dashboard.js" />
         <option value="$PROJECT_DIR$/src/Components/Dashboard/Dashboard.scss" />
         <option value="$PROJECT_DIR$/src/assets/svg-loaders/bars.svg" />
-        <option value="$PROJECT_DIR$/src/Components/Summary/Summary.js" />
         <option value="$PROJECT_DIR$/src/Components/Dropzone/Dropzone.scss" />
+        <option value="$PROJECT_DIR$/src/Components/Summary/Summary.scss" />
+        <option value="$PROJECT_DIR$/src/Components/Summary/Summary.js" />
         <option value="$PROJECT_DIR$/src/Components/Dropzone/Dropzone.js" />
       </list>
     </option>
@@ -122,6 +144,13 @@
               <item name="Components" type="9f88c78c:ScopeViewTreeModel$FileNode" />
               <item name="Dropzone" type="9f88c78c:ScopeViewTreeModel$FileNode" />
             </path>
+            <path>
+              <item name="ana.ly" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
+              <item name="" type="442cc68d:ScopeViewTreeModel$RootNode" />
+              <item name="src" type="9f88c78c:ScopeViewTreeModel$FileNode" />
+              <item name="Components" type="9f88c78c:ScopeViewTreeModel$FileNode" />
+              <item name="Summary" type="9f88c78c:ScopeViewTreeModel$FileNode" />
+            </path>
           </expand>
           <select />
         </subPane>
@@ -169,12 +198,12 @@
       <updated>1557745852948</updated>
       <workItem from="1557745858641" duration="93000" />
       <workItem from="1557747067744" duration="95000" />
-      <workItem from="1557747273549" duration="23941000" />
+      <workItem from="1557747273549" duration="31172000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="24129000" />
+    <option name="totallyTimeSpent" value="31360000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1440" height="900" extended-state="0" />
@@ -273,30 +302,34 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/Components/Dropzone/Dropzone.scss">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="155">
+          <caret line="43" column="13" selection-start-line="43" selection-start-column="13" selection-end-line="43" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Components/Summary/Summary.scss">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="513">
+          <caret line="19" column="21" selection-start-line="19" selection-start-column="21" selection-end-line="19" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/Components/Summary/Summary.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="297">
-          <caret line="11" column="12" selection-start-line="11" selection-start-column="12" selection-end-line="11" selection-end-column="12" />
+        <state relative-caret-position="459">
+          <caret line="17" column="142" selection-start-line="17" selection-start-column="142" selection-end-line="17" selection-end-column="142" />
           <folding>
             <element signature="e#0#41#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Components/Summary/Summary.scss">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Components/Dropzone/Dropzone.scss">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="364">
-          <caret line="37" column="20" selection-start-line="37" selection-start-column="20" selection-end-line="37" selection-end-column="20" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/Components/Dropzone/Dropzone.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="184">
-          <caret line="115" column="66" selection-start-line="115" selection-start-column="66" selection-end-line="115" selection-end-column="66" />
+        <state relative-caret-position="144">
+          <caret line="88" column="13" selection-start-line="88" selection-start-column="13" selection-end-line="88" selection-end-column="13" />
           <folding>
             <element signature="e#0#40#0" expanded="true" />
           </folding>
