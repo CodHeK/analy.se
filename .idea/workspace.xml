@@ -2,10 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f3ffca14-4b2a-4603-beba-6da907631cd6" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Components/Dashboard/Dashboard.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/Dashboard/Dashboard.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Components/Dropzone/Dropzone.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/Dropzone/Dropzone.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Components/Summary/Summary.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/Summary/Summary.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/index.html" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -31,13 +28,10 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/README.md">
-          <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-            <state split_layout="SPLIT">
-              <first_editor relative-caret-position="81">
-                <caret line="3" lean-forward="true" selection-start-line="3" selection-end-line="3" />
-              </first_editor>
-              <second_editor />
+        <entry file="file://$PROJECT_DIR$/public/index.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="552">
+              <caret line="34" column="19" selection-start-line="34" selection-start-column="19" selection-end-line="34" selection-end-column="19" />
             </state>
           </provider>
         </entry>
@@ -107,13 +101,13 @@
         <option value="$PROJECT_DIR$/src/App.scss" />
         <option value="$PROJECT_DIR$/src/Components/Dashboard/Dashboard.scss" />
         <option value="$PROJECT_DIR$/src/assets/svg-loaders/bars.svg" />
-        <option value="$PROJECT_DIR$/public/index.html" />
         <option value="$PROJECT_DIR$/src/Components/Summary/Summary.scss" />
         <option value="$PROJECT_DIR$/src/Components/Dropzone/Dropzone.scss" />
         <option value="$PROJECT_DIR$/src/Components/Summary/Summary.js" />
         <option value="$PROJECT_DIR$/src/Components/Dashboard/Dashboard.js" />
         <option value="$PROJECT_DIR$/src/Components/Dropzone/Dropzone.js" />
         <option value="$PROJECT_DIR$/README.md" />
+        <option value="$PROJECT_DIR$/public/index.html" />
       </list>
     </option>
   </component>
@@ -221,12 +215,12 @@
       <updated>1557745852948</updated>
       <workItem from="1557745858641" duration="93000" />
       <workItem from="1557747067744" duration="95000" />
-      <workItem from="1557747273549" duration="39711000" />
+      <workItem from="1557747273549" duration="39846000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="39899000" />
+    <option name="totallyTimeSpent" value="40034000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1440" height="900" extended-state="0" />
@@ -304,13 +298,6 @@
     <entry file="file://$PROJECT_DIR$/src/assets/svg-loaders/bars.svg">
       <provider selected="true" editor-type-id="images" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/public/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="486">
-          <caret line="18" column="73" selection-start-line="18" selection-start-column="73" selection-end-line="18" selection-end-column="73" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/Components/Summary/Summary.scss">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="354">
@@ -345,6 +332,16 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/README.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor relative-caret-position="81">
+            <caret line="3" lean-forward="true" selection-start-line="3" selection-end-line="3" />
+          </first_editor>
+          <second_editor />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/Components/Dropzone/Dropzone.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="267">
@@ -355,13 +352,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/README.md">
-      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-        <state split_layout="SPLIT">
-          <first_editor relative-caret-position="81">
-            <caret line="3" lean-forward="true" selection-start-line="3" selection-end-line="3" />
-          </first_editor>
-          <second_editor />
+    <entry file="file://$PROJECT_DIR$/public/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="552">
+          <caret line="34" column="19" selection-start-line="34" selection-start-column="19" selection-end-line="34" selection-end-column="19" />
         </state>
       </provider>
     </entry>
