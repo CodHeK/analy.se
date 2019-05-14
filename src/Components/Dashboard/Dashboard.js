@@ -7,7 +7,7 @@ class Dashboard extends Component {
         return (
             <div className="Dashboard">
                 <div className="outer-title-box">
-                    <h1 className="title">ana<span className="dot">.</span>ly</h1>
+                    <h1 className="title">analy<span className="dot">.</span>se</h1>
                     {/*<div className="dash"></div>*/}
                 </div>
                 <section className="main-content">

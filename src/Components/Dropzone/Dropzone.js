@@ -38,6 +38,10 @@ function lineCount( text ) {
     return nLines;
 }
 
+function numberWithCommas(x) {
+    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+}
+
 class Dropzone extends Component {
     constructor(props) {
         super(props);
@@ -99,23 +103,24 @@ class Dropzone extends Component {
                             (nonDir.indexOf("env") === -1)  &&
                             (nonDir.indexOf("venv") === -1) &&
                             (allExts.indexOf(ext) !== -1)) {
-                            let rd = new FileReader();
+                            let rd = new FileReader(), blob = await getFile(each);
                             rd.onload = function (e) {
                                 let res = e.target.result;
                                 let lines = lineCount(res);
-        
+                                let size = blob.size; console.log(size, path);
                                 if (fileExtsMap.has(ext)) {
                                     let ct = fileExtsMap.get(ext);
                                     ct.fileCount += 1;
                                     ct.loc += lines;
+                                    ct.size += size;
                                     fileExtsMap.set(ext, ct);
                                 } else {
-                                    fileExtsMap.set(ext, {'fileCount': 1, 'loc': lines});
+                                    fileExtsMap.set(ext, {'fileCount': 1, 'loc': lines, 'size': size });
                                 }
                                 
                                 array2.push(each);
                             }
-                            rd.readAsText(await getFile(each));
+                            rd.readAsText(blob);
                         }
                     }
                 });
@@ -147,7 +152,8 @@ class Dropzone extends Component {
             this.state.extMap.forEach((value, key, map) => {
                 let fileObj = {
                     'extension': key,
-                    'loc': value.loc,
+                    'loc': numberWithCommas(value.loc),
+                    'size': value.size,
                     'fileCount': value.fileCount,
                     'color': `rgba(${Math.floor(Math.random() * 255)}, ${Math.floor(Math.random() * 255)}, ${Math.floor(Math.random() * 255)}, 0.5)`
                 };
@@ -166,7 +172,7 @@ class Dropzone extends Component {
             }
             mapData.sort((a, b) => b.fileCount - a.fileCount);
             summary =  mapData.map((each, key) => {
-                return <Summary key={key} extension={each.extension} loc={each.loc} fileCount={each.fileCount} color={each.color} total={this.state.totalFiles} />
+                return <Summary key={key} fileObj={each} total={this.state.totalFiles} />
             })
         }
         $(".summary-content").fadeIn(5500);
@@ -177,7 +183,7 @@ class Dropzone extends Component {
         const content = !this.state.hightlight ? "+" : "🙌";
         const alert = this.state.hightlight ?
                     <div className="alert">⚠️ &nbsp; Dropping in the wrong h<span className="special">o</span>le fella 😛</div> :
-                    <div className="alert">Drag in your project folder to analy-se 😉</div>;
+                    <div className="alert">Drag in your project folder to analy.se 😉</div>;
         return (
             <div className="Dropzone-main">
                 <div className={`Dropzone ${this.state.hightlight ? "Highlight" : ""}`}
