@@ -4,7 +4,7 @@ A simple project files analy.ser, just drag and drop your project folder, make s
 
 ![dashboard](dashboard.png)
 ##
-![dropzone](dropzone.png)
+![dropzone](dropzone2.png)
 
 
 
